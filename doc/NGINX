@@ -1,0 +1,40 @@
+upstream android_group_server {
+  # for UNIX domain socket setups:
+  server unix:/datas/www/android-group/current/tmp/sockets/unicorn.sock fail_timeout=0;
+
+  # for TCP setups, point these to your backend servers
+  # server 192.168.0.5:9000 fail_timeout=0;
+  # server 192.168.0.5:9000 fail_timeout=0;
+}
+
+server {
+        listen       80;
+        server_name  www.android-group.org android-group.org;
+        root /datas/www/android-group/current/public;
+        index  index.html index.htm;
+
+        error_log /opt/nginx/logs/android-group/error_android-group.log;
+        access_log /opt/nginx/logs/android-group/access_v4_eoews.log main;
+ 
+        location / {
+	        #proxy_store on;
+	        proxy_redirect off;
+	        proxy_set_header X-Real-IP $remote_addr;
+	        proxy_set_header Host $host;
+	        proxy_set_header Content-Length  $content_length;
+	        proxy_set_header   X-Forwarded-For $remote_addr;
+	        #proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+	        #proxy_pass_header Content-Length;
+	        client_max_body_size       10m;
+	        client_body_buffer_size    128k;
+	        proxy_connect_timeout      90;
+	        proxy_send_timeout         90;
+	        proxy_read_timeout         90;
+	        proxy_buffer_size          4k;
+	        proxy_buffers              4 32k;
+	        proxy_busy_buffers_size    64k;
+	        proxy_temp_file_write_size 64k;
+	        chunked_transfer_encoding off;
+			proxy_pass   http://android_group_server/;
+        }
+}

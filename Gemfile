@@ -1,5 +1,8 @@
 source 'http://ruby.taobao.org'
 
+gem 'execjs'
+gem 'therubyracer'
+
 gem "rails", "3.1.3"
 gem "bson_ext", "1.5.2"
 gem "mongoid", "2.3.4"
