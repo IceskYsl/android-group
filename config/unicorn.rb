@@ -8,10 +8,13 @@
 #
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete
 # documentation.
+rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Use at least one worker per core if you're on a dedicated server,
 # more will usually help for _short_ waits on databases/caches.
-worker_processes 8
+# 16 workers and 1 master
+# worker_processes 8
+worker_processes (rails_env == 'production' ? 16 : 4)
 
 # Since Unicorn is never exposed to outside clients, it does not need to
 # run on the standard HTTP port (80), there is no reason to start Unicorn
