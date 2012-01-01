@@ -2,5 +2,8 @@ wget https://github.com/ijonas/dotfiles/raw/master/etc/redis.conf
 
 redis-server /usr/local/etc/redis.conf 
 
+#mongod
+./bin/mongod --dbpath /datas/dbs/mongo/ --fork --logpath /var/log/mongodb/log.log
+
 #mysqldump
 mysqldump -u USERNAME -p  db > db.sql

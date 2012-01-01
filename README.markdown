@@ -12,7 +12,10 @@ This is source code of [Ruby China Group](http://ruby-china.org)
   bundle install
   bundle update rails
   rake assets:precompile
+  #use thin
   thin start -O -C config/thin.yml
+  #or use unicorn
+  ./script/unicorn.start.sh
   ./script/resque start
   easy_install pygments # 或者 pip install pygments
   ```
