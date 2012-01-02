@@ -7,6 +7,9 @@ gem "rails", "3.1.3"
 gem "bson_ext", "1.5.2"
 gem "mongoid", "2.3.4"
 
+#akismet
+gem 'ruby-akismet', :require => 'akismet'
+
 # 上传组件
 gem 'carrierwave', '0.5.6'
 gem 'carrierwave-mongoid', '0.1.2', :require => 'carrierwave/mongoid'

@@ -64,7 +64,12 @@ RubyChina::Application.routes.draw do
   namespace :cpanel do 
     root :to => "home#index"
     resources :site_configs
-    resources :replies
+    resources :replies do
+      member do
+        post :spam
+        post :ham
+      end
+    end
     resources :topics do
       member do
         post :suggest

@@ -5,6 +5,8 @@
     minute: 'Minute'
     edit: "Edit"
     create: "Create"
+    ham: "Ham"
+    spam: "Spam"
     avatar: "Avatar"
     save: "Save"
     saving: "Saving"

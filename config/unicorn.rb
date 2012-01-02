@@ -14,7 +14,7 @@ rails_env = ENV['RAILS_ENV'] || 'production'
 # more will usually help for _short_ waits on databases/caches.
 # 16 workers and 1 master
 # worker_processes 8
-worker_processes (rails_env == 'production' ? 16 : 4)
+worker_processes (rails_env == 'production' ? 4 : 4)
 
 # Since Unicorn is never exposed to outside clients, it does not need to
 # run on the standard HTTP port (80), there is no reason to start Unicorn

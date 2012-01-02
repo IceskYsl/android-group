@@ -11,6 +11,7 @@ class Reply
   field :source  
   field :message_id
   field :mentioned_user_ids, :type => Array, :default => []
+  field :spam, :type => Boolean, :default => false
   
   belongs_to :user, :inverse_of => :replies
   belongs_to :topic, :inverse_of => :replies

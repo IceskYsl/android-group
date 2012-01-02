@@ -1,6 +1,6 @@
 # coding: utf-8  
 class Cpanel::RepliesController < Cpanel::ApplicationController
-
+  
   def index
     @replies = Reply.desc(:_id).paginate :page => params[:page], :per_page => 30
   end
@@ -21,6 +21,20 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
     @reply = Reply.find(params[:id])
   end
 
+  def spam
+    @reply = Reply.find(params[:id])
+    @reply.update_attribute(:spam, true)
+    Akismet.submit_spam(akismet_attributes)
+    redirect_to(cpanel_replies_path)
+  end
+  
+  def ham
+    @reply = Reply.find(params[:id])
+    @reply.update_attribute(:spam, true)
+    Akismet.submit_ham(akismet_attributes)
+    redirect_to(cpanel_replies_path)
+  end
+  
 
   def create
     @reply = Reply.new(params[:reply])
@@ -48,4 +62,19 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
 
     redirect_to(cpanel_replies_path)
   end
+  
+  protected
+  
+  def akismet_attributes
+    {
+      :comment_author       => @reply.user.login,
+      :comment_author_url   => user_url(@reply.user.login),
+      :comment_author_email => @reply.user.email,
+      :comment_content      => @reply.body,
+      :permalink            => topic_url(@reply.topic_id)
+    }
+  end
+
+  
+  
 end

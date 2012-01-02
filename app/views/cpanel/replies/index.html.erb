@@ -8,8 +8,9 @@
     <td class="first">ID</td>
     <td style="width:500px">Body</td>
         <td>Topic</td>
-    <td>User</td>
-    <td>At</td>
+        <td>User</td>
+        <td>Spam</td>
+        <td>At</td>
 
     <td></td>
   </tr>
@@ -26,9 +27,14 @@
       <td><%= reply.topic_id %></td>
       <% end %>
     <td><%= reply.user.login if reply.user %></td>
+    <td><%= reply.spam %></td>
     <td><%= l reply.created_at, :format => :short %></td>
-    <td><%= link_to t("common.edit"), edit_cpanel_reply_path(reply) %>
-    <%= link_to t("common.delete"), cpanel_reply_path(reply), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+	<%= link_to t("common.edit"), edit_cpanel_reply_path(reply) %>
+	<%= link_to t("common.ham"), ham_cpanel_reply_path(reply), :confirm => 'Are you sure?', :method => :post  %>
+	<%= link_to t("common.spam"), spam_cpanel_reply_path(reply), :confirm => 'Are you sure?', :method => :post  %>
+    <%= link_to t("common.delete"), cpanel_reply_path(reply), :confirm => 'Are you sure?', :method => :delete %>
+</td>
   </tr>
 <% end %>
 </table>

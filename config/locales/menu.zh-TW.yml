@@ -6,6 +6,8 @@
     edit: "修改"
     create: "新增"
     avatar: "頭像"
+    ham: "非法"
+    spam: "垃圾"
     save: "儲存"
     delete: "刪除"
     place_top: "置頂"
