@@ -12,8 +12,8 @@
   <% end %>
   <meta name="keywords" content="<%= @meta_keywords %>" />
   <meta name="description" content="<%= @meta_description %>" />
-
-  <link rel="shortcut icon" href="<%= asset_path("favicon.ico") %>" /> 
+  <meta charset='utf-8'>
+  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>" /> 
   <%= csrf_meta_tag %>
   <%= auto_discovery_link_tag(:rss,feed_topics_url,:title => '订阅最新贴') %>
   <%= yield :node_feed_link %>

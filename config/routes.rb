@@ -74,6 +74,7 @@ RubyChina::Application.routes.draw do
       member do
         post :suggest
         post :unsuggest
+        post :undestroy
       end
     end
     resources :nodes

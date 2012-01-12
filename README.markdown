@@ -17,8 +17,13 @@ This is source code of [Ruby China Group](http://ruby-china.org)
   #or use unicorn
   ./script/unicorn.start.sh
   ./script/resque start
+  bundle exec rake sunspot:solr:start
   easy_install pygments # 或者 pip install pygments
   ```
+
+## Test
+
+* before running RSpec, start sunspot:solr : ```RAILS_ENV=test bundle exec rake sunspot:solr:run```
 
 ## Deploy
 
@@ -65,7 +70,6 @@ Dalli requires memcached 1.4.x +
 
 ## Common Partial
 
-* common/share : for social share
 * common/user\_nav : user\_navigation_bar
 
 ## Facebook Share
