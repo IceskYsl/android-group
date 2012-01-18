@@ -26,7 +26,7 @@
       <%= t("posts.post_source")%>:<%= link_to(@post.source, @post.source_url+"?ref=#{Setting.domain}", :target => "_blank")%>
     </div>
     <% end %>
-    <div class="body"><%= raw @post.body %></div>
+    <div class="body"> <%= format_topic_body(@post.body) %>  </div>
     <div class="votes">
 
     </div>
