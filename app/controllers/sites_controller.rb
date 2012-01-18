@@ -5,7 +5,7 @@ class SitesController < ApplicationController
   def index
     @site_nodes = SiteNode.desc('sort').includes(:sites)
     drop_breadcrumb(t("menu.sites"))
-    set_seo_meta("Ruby #{t("menu.sites")}")
+    set_seo_meta("Android #{t("menu.sites")}")
   end
   
   def new
