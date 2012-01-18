@@ -7,3 +7,9 @@ redis-server /usr/local/etc/redis.conf
 
 #mysqldump
 mysqldump -u USERNAME -p  db > db.sql
+
+
+/usr/local/bin/redis-server /etc/redis.conf
+
+#mongodb
+rm -f /datas/dbs/monogdb/*.lock; /opt/mongodb-linux-x86_64-2.0.2/bin/mongod --dbpath /datas/dbs/monogdb --fork --logpath /var/log/mongod.log --profile 0 --logappend --journal --pidfilepath /datas/dbs/monogdb/mongodb.pid --maxConns 10000 --rest --oplogSize 2048 --bind_ip 127.0.0.1 --port 27017
