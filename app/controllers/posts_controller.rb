@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.hits.incr
     set_seo_meta("#{@post.title}")
-    drop_breadcrumb("文章")
+    drop_breadcrumb("文章", posts_path())
     drop_breadcrumb t("common.read")
   end
 
