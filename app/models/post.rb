@@ -41,7 +41,7 @@ class Post
   before_save :split_tags
   
   def similars
-    tags = post.tags
+    tags = self.tags
     tags.blank? ?  [] : Post.normal.by_tag(tags.first).limit(5)
   end
   
