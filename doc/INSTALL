@@ -14,4 +14,7 @@ memcached -d -m 20m -uroot -l 127.0.0.1
 /usr/local/bin/redis-server /etc/redis.conf
 
 #mongodb
+rm -f /datas/dbs/mongo/*.lock; /opt/mongodb/mongodb-osx-x86_64-2.0.2/bin/mongod --dbpath /datas/dbs/mongo --fork --logpath /var/log/mongod.log --profile 0 --logappend --journal --pidfilepath /datas/dbs/mongo/mongodb.pid --maxConns 10000 --rest --oplogSize 2048 --bind_ip 127.0.0.1 --port 27017
+
+
 rm -f /datas/dbs/monogdb/*.lock; /opt/mongodb-linux-x86_64-2.0.2/bin/mongod --dbpath /datas/dbs/monogdb --fork --logpath /var/log/mongod.log --profile 0 --logappend --journal --pidfilepath /datas/dbs/monogdb/mongodb.pid --maxConns 10000 --rest --oplogSize 2048 --bind_ip 127.0.0.1 --port 27017

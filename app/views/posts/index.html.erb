@@ -3,6 +3,16 @@
   <div class="box">
     <%= link_to "投稿", new_post_path, :class => "btn success" %>
   </div>
+
+  <div class="box">
+    <h2>热门标签</h2>
+    <div class="inner">
+	    <% @hots_tags.each do |tag| %>
+	    	<%=link_to(tag[0],posts_path(:tag => tag[0]))%>
+	    <% end %>
+    </div>
+  </div>
+
 </div>
 
 <div class="content">

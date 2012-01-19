@@ -45,6 +45,12 @@ class Post
     tags.blank? ?  [] : Post.normal.by_tag(tags.first).limit(5)
   end
   
+  def self.hots_tags(limit=10)
+    o = []
+    Post.normal.to_a.reject{ |p| p['tags'].blank? }.select{|p| o <<  p.tags}.flatten
+    o.flatten.inject({}) {|hash, item| hash[item] ||= 0; hash[item] += 1; hash }.sort {|a, b| b <=> a }[0..limit]
+  end
+  
   def split_tags
     if !self.tag_list.blank? and self.tags.blank?
       self.tags = self.tag_list.split(/,|，/).collect { |tag| tag.strip }.uniq

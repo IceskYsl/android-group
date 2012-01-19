@@ -8,6 +8,7 @@ class PostsController < ApplicationController
       scoped_posts = scoped_posts.by_tag(params[:tag])
     end
     @posts = scoped_posts.recent.paginate :page => params[:page], :per_page => 20
+    @hots_tags = Post.hots_tags(20)
     set_seo_meta("文章")
     
     drop_breadcrumb("文章")
