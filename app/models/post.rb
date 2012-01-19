@@ -47,8 +47,10 @@ class Post
   
   def self.hots_tags(limit=10)
     o = []
-    Post.normal.to_a.reject{ |p| p['tags'].blank? }.select{|p| o <<  p.tags}.flatten
-    o.flatten.inject({}) {|hash, item| hash[item] ||= 0; hash[item] += 1; hash }.sort {|a, b| b <=> a }[0..limit]
+    Post.normal.to_a.reject{ |p| p['tags'].blank? }.select{|p| o <<  p.tags}
+    tags =  o.flatten.inject({}) {|hash, item| hash[item] ||= 0; hash[item] += 1; hash }.to_a.sort{|a,b| b[1] <=> a[1]}[0..limit]
+    # logger.info "tags;#{tags}"
+    tags
   end
   
   def split_tags
