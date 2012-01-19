@@ -10,6 +10,11 @@
   <div class="box">
     <h2><%= t("common.you_may_like")%></h2>
     <div class="inner">
+	  <ul>
+	    <% @post.similars.each do |item| %>
+	        <li> <%= post_title_tag(item) %></li>
+	    <% end %>
+	  </ul>
     </div>
   </div>
 </div>
