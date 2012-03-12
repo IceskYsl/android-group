@@ -4,7 +4,7 @@
     <%= render "shared/error_messages", :target => @topic %>  
     <%= f.input :title do %>
       <span class="span3">
-        <%= f.select :node_id, Node.hot_node_collection %>
+        <%= render_topic_node_select_tag(@topic) %>
       </span>
       <span class="span6">
         <%= f.text_field :title %>
@@ -14,7 +14,7 @@
     <div class="edit_tools input">
       <%= render "editor_toolbar" %>
     </div>    
-    <%= f.input :body, :as => :text, :input_html => { :class => "topic_editor xxlarge", :style => "height:400px" }%>
+    <%= f.input :body, :as => :text, :input_html => { :class => "topic_editor closewarning xxlarge", :style => "height:400px" }%>
 
     <div class="actions">
       <%= f.submit t("common.save"), :class => "btn primary", :disable_with => t("common.saving") %>

@@ -5,6 +5,7 @@
  *= require jquery.chosen
  *= require highlight
  *= require social-share-button
+ *= require jquery.at
  *= require_tree ./sprites/
  *= require_self
  */
@@ -19,11 +20,13 @@ code { background:none; }
 
 .breadcrumb { color:#999;}
 
-.container-fluid { padding:0;}
+
+.container-fluid { padding:0; }
 .container-fluid > .sidebar {
-  position:relative;
-  left:0;
-  float:right;
+  position:absolute;
+  left:auto;
+  right:0;
+  top:0;
   width: 220px;
 }
 
@@ -85,7 +88,13 @@ a[rel=userpopover] {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  h2.title {
+    margin:0 -10px; padding:0 10px;
+    font-size:14px; color:#999; line-height:100%;
+    border-bottom:1px solid #ddd; padding-bottom:8px;
+  }
 }
+
 
 .footer {
   border-top:0;

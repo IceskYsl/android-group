@@ -7,7 +7,9 @@
 </td>
 <td>
   <h3>
-    <%= user_name_tag(reply.user) %>
+    <span class="user">
+      <%= user_name_tag(reply.user) %>
+    </span>
     在
     <%= render_topic_title(topic) %>
     提及你：
@@ -16,8 +18,8 @@
     <% end %>
   </h3>
   <%- if reply.present? -%>
-    <blockquote>
-      <%= format_topic_body(reply.body, :mentioned_user_logins => reply.mentioned_user_logins) %>
-    </blockquote>
+    <div class="body md_body">
+      <%= raw reply.body_html %>
+    </div>
   <%- end -%>
 </td>

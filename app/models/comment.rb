@@ -4,11 +4,15 @@ class Comment
   include Mongoid::Timestamps
   include Mongoid::BaseModel
   include Mongoid::SoftDelete
-  
+  include Mongoid::MarkdownBody
+
   field :body
-  
+  field :body_html
+
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
+
+  attr_accessible :body
 
   index :user_id
   index :commentable_type

@@ -16,7 +16,7 @@ RubyChina::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :ses
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -28,18 +28,4 @@ RubyChina::Application.configure do
 
   config.assets.compress = false
   config.assets.debug = true
-
-  config.after_initialize do |app|
-    app.assets.logger = Logger.new('/dev/null')
-  end
-
-  config.mongoid.logger = Logger.new($stdout, :warn)
-end
-
-
-Rails::Rack::Logger.class_eval do
-  def before_dispatch_with_quiet_assets(env)
-    before_dispatch_without_quiet_assets(env) unless env['PATH_INFO'].index("/assets/") == 0
-  end
-  alias_method_chain :before_dispatch, :quiet_assets
 end

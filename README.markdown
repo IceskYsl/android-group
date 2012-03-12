@@ -1,8 +1,8 @@
-This is source code of [Ruby China Group](http://ruby-china.org)
+This is the source code of [Ruby China Group](http://ruby-china.org)
 
 ## Install
 
-  * You need to install *Ruby 1.9.2*, *Rubygems* and *Rails 3.1* first.
+  * You need *Ruby 1.9.2+*, *Rubygems* and *Rails 3.2+* first.
   * Install and start *Redis*, *MongoDB*, *memcached*, *Python*, *Pygments*
 
   ```
@@ -10,20 +10,25 @@ This is source code of [Ruby China Group](http://ruby-china.org)
   cp config/mongoid.yml.default config/mongoid.yml
   cp config/redis.yml.default config/redis.yml
   bundle install
-  bundle update rails
   rake assets:precompile
+<<<<<<< HEAD
   #use thin
+=======
+  rake db:seed
+>>>>>>> ruby-china/master
   thin start -O -C config/thin.yml
   #or use unicorn
   ./script/unicorn.start.sh
   ./script/resque start
   bundle exec rake sunspot:solr:start
   easy_install pygments # 或者 pip install pygments
+  rake db:migrate
   ```
-
-## Test
-
-* before running RSpec, start sunspot:solr : ```RAILS_ENV=test bundle exec rake sunspot:solr:run```
+  or you can just this issue 
+  ```
+  rake test:init
+  ```
+  to prepare all the config files and start essential services.
 
 ## Deploy
 
@@ -92,3 +97,11 @@ facekbook_enable: false by default
 * [Twitter Bootstrap](https://twitter.github.com/bootstrap)
 
 Forked from [Homeland Project](https://github.com/huacnlee/homeland)
+
+## License
+
+Copyright (c) 2011-2012 Ruby China
+
+Released under the MIT license:
+
+* [www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT)

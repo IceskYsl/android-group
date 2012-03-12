@@ -5,12 +5,14 @@ class Topic
   include Mongoid::BaseModel
   include Mongoid::SoftDelete
   include Mongoid::CounterCache
-  include Redis::Search
+  include Mongoid::Likeable
+  include Mongoid::MarkdownBody
   include Redis::Objects
   include Sunspot::Mongoid
 
   field :title
   field :body
+  field :body_html
   field :last_reply_id, :type => Integer
   field :replied_at , :type => DateTime
   field :source
@@ -20,6 +22,10 @@ class Topic
   field :follower_ids, :type => Array, :default => []
   field :suggested_at, :type => DateTime
   field :likes_count, :type => Integer, :default => 0
+  # 最后回复人的用户名 - cache 字段用于减少列表也的查询
+  field :last_reply_user_login
+  # 节点名称 - cache 字段用于减少列表也的查询
+  field :node_name
 
   belongs_to :user, :inverse_of => :topics
   counter_cache :name => :user, :inverse_of => :topics
@@ -28,9 +34,9 @@ class Topic
   belongs_to :last_reply_user, :class_name => 'User'
   has_many :replies, :dependent => :destroy
 
-  attr_protected :user_id
+  attr_accessible :title, :body
   validates_presence_of :user_id, :title, :body, :node_id
-  
+
   index :node_id
   index :user_id
   index :replied_at
@@ -38,32 +44,31 @@ class Topic
 
   counter :hits, :default => 0
 
-  redis_search_index(:title_field => :title,
-                     :score_field => :replied_at,
-                     :ext_fields => [:node_name,:replies_count])
-
   searchable do
-    text :title, :stored => true
-    text :body, :stored => true
-    text :replies, :stored => true do
+    text :title, :stored => true, :more_like_this => true
+    text :body, :stored => true, :more_like_this => true
+    text :replies, :stored => true, :more_like_this => true do
       replies.map { |reply| reply.body }
     end
     integer :node_id, :user_id
     boolean :deleted_at
     time :replied_at
   end
-  
+
   # scopes
   scope :last_actived, desc("replied_at").desc("created_at")
   # 推荐的话题
   scope :suggest, where(:suggested_at.ne => nil).desc(:suggested_at)
-  before_save :set_replied_at
-  def set_replied_at
-    self.replied_at = Time.now
+  scope :fields_for_list, without(:body,:body_html)
+
+  before_save :store_cache_fields
+  def store_cache_fields
+    self.node_name = self.node.try(:name) || ""
   end
 
-  def node_name
-    node.try(:name) || ""
+  before_create :init_replied_at_on_create
+  def init_replied_at_on_create
+    self.replied_at = Time.now if self.replied_at.blank?
   end
 
   def push_follower(user_id)
@@ -73,11 +78,12 @@ class Topic
   def pull_follower(user_id)
     self.follower_ids.delete(user_id)
   end
-  
+
   def update_last_reply(reply)
     self.replied_at = Time.now
     self.last_reply_id = reply.id
     self.last_reply_user_id = reply.user_id
+    self.last_reply_user_login = reply.user.try(:login) || nil
     self.push_follower(reply.user_id)
     self.save
   end

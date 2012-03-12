@@ -6,15 +6,15 @@
 # SiteConfig.foo = "asdkglaksdg"
 class SiteConfig
   include Mongoid::Document
-  
+
   field :key
   field :value
-  
+
   index :key
-  
+
   validates_presence_of :key
   validates_uniqueness_of :key
-  
+
   def self.method_missing(method, *args)
     method_name = method.to_s
     super(method, *args)
@@ -30,7 +30,7 @@ class SiteConfig
       end
     else
       Rails.cache.fetch("site_config:#{method}") do
-        if item = where(:key => method).first
+        if item = find_by_key(method)
           item.value
         else
           nil
@@ -38,19 +38,17 @@ class SiteConfig
       end
     end
   end
-  
-  after_save :expire_cache
-  def expire_cache
+
+  after_save :update_cache
+  def update_cache
     Rails.cache.write("site_config:#{self.key}", self.value)
   end
-  
+
   def self.find_by_key(key)
     where(:key => key.to_s).first
   end
-  
+
   def self.save_default(key, value)
-    if not find_by_key(key)
-      create(:key => key, :value => value.to_s)
-    end
+    create(:key => key, :value => value.to_s) unless find_by_key(key)
   end
 end

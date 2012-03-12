@@ -1,8 +1,7 @@
 # coding: utf-8
 class SearchController < ApplicationController
   def index
-    @keywords = Segment.split(params[:q])
-    search_text = @keywords.join(" ")
+    search_text = params[:q]
     @search = Sunspot.search(Topic) do
       keywords search_text, :highlight => true
       paginate :page => params[:page], :per_page => 20
@@ -12,10 +11,9 @@ class SearchController < ApplicationController
     set_seo_meta("#{t("common.search")}: #{params[:q]}")
     drop_breadcrumb("#{t("common.search")}: #{params[:q]}")
   end
-  
+
   def wiki
-    @keywords = Segment.split(params[:q])
-    search_text = @keywords.join(" ")
+    search_text = params[:q]
     @search = Sunspot.search(Page) do
       keywords search_text, :highlight => true
       paginate :page => params[:page], :per_page => 20
