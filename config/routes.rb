@@ -35,15 +35,9 @@ RubyChina::Application.routes.draw do
       put :mark_all_as_read
     end
   end
-<<<<<<< HEAD
 
   resources :nodes
 
-=======
-
-  resources :nodes
-
->>>>>>> ruby-china/master
   match "topics/node:id" => "topics#node", :as => :node_topics
   match "topics/node:id/feed" => "topics#node_feed", :as => :feed_node_topics
   match "topics/last" => "topics#recent", :as => :recent_topics
@@ -65,7 +59,6 @@ RubyChina::Application.routes.draw do
     end
   end
   resources :likes
-<<<<<<< HEAD
 
   match "/search" => "search#index", :as => :search
   match "/search/topics" => "search#topics", :as => :search_topics
@@ -80,17 +73,6 @@ RubyChina::Application.routes.draw do
         post :ham
       end
     end
-=======
-
-  match "/search" => "search#index", :as => :search
-  match "/search/topics" => "search#topics", :as => :search_topics
-  match "/search/wiki" => "search#wiki", :as => :search_wiki
-
-  namespace :cpanel do
-    root :to => "home#index"
-    resources :site_configs
-    resources :replies
->>>>>>> ruby-china/master
     resources :topics do
       member do
         post :suggest
