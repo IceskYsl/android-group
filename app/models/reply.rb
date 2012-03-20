@@ -13,12 +13,9 @@ class Reply
   field :source
   field :message_id
   field :mentioned_user_ids, :type => Array, :default => []
-<<<<<<< HEAD
   field :spam, :type => Boolean, :default => false
   
-=======
 
->>>>>>> ruby-china/master
   belongs_to :user, :inverse_of => :replies
   belongs_to :topic, :inverse_of => :replies
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete

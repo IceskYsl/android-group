@@ -9,6 +9,8 @@
     ham: "非法"
     spam: "垃圾"
     save: "儲存"
+    saving: "正在儲存"
+    submitting: "正在傳送"
     delete: "刪除"
     undelete: "恢復"
     place_top: "置頂"

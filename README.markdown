@@ -12,6 +12,7 @@ This is the source code of [Ruby China Group](http://ruby-china.org)
   bundle install
   rake assets:precompile
 <<<<<<< HEAD
+<<<<<<< HEAD
   #use thin
 =======
   rake db:seed
@@ -19,6 +20,10 @@ This is the source code of [Ruby China Group](http://ruby-china.org)
   thin start -O -C config/thin.yml
   #or use unicorn
   ./script/unicorn.start.sh
+=======
+  rake db:seed
+  thin start -O -C config/thin.yml
+>>>>>>> ruby-china/master
   ./script/resque start
   bundle exec rake sunspot:solr:start
   easy_install pygments # 或者 pip install pygments

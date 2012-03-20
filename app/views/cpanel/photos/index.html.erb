@@ -2,12 +2,19 @@
 
 <table>
   <tr>
+<<<<<<< HEAD
     <th>ID</th>
     <th>Image</th>
     <th>User</th>
     <th></th>
     <th></th>
     <th></th>
+=======
+    <td>ID</td>
+    <td>Image</td>
+    <td>User</td>
+    <td></td>
+>>>>>>> ruby-china/master
   </tr>
 
 <% @photos.each do |photo| %>
@@ -15,7 +22,11 @@
     <td><%= photo.id %></td>
     <td><%= image_tag(photo.image.url) if !photo.image.blank? %></td>
     <td><%= photo.user.login if !photo.user.blank? %></td>
+<<<<<<< HEAD
     <td><%= link_to 'Destroy', cpanel_photo_path(photo), :confirm => 'Are you sure?', :method => :delete %></td>
+=======
+    <td><%= link_to '', cpanel_photo_path(photo), :confirm => 'Are you sure?', :method => :delete, :class => "icon small_delete" %></td>
+>>>>>>> ruby-china/master
   </tr>
 <% end %>
 </table>

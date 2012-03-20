@@ -1,6 +1,10 @@
 # coding: utf-8
 class Cpanel::RepliesController < Cpanel::ApplicationController
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> ruby-china/master
   def index
     @replies = Reply.desc(:_id).paginate :page => params[:page], :per_page => 30
   end
@@ -21,6 +25,7 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
     @reply = Reply.find(params[:id])
   end
 
+<<<<<<< HEAD
   def spam
     @reply = Reply.find(params[:id])
     @reply.update_attribute(:spam, true)
@@ -35,6 +40,8 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
     redirect_to(cpanel_replies_path)
   end
   
+=======
+>>>>>>> ruby-china/master
 
   def create
     @reply = Reply.new(params[:reply])
@@ -61,6 +68,7 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
     @reply.destroy
 
     redirect_to(cpanel_replies_path)
+<<<<<<< HEAD
   end
   
   protected
@@ -73,6 +81,8 @@ class Cpanel::RepliesController < Cpanel::ApplicationController
       :comment_content      => @reply.body,
       :permalink            => topic_url(@reply.topic_id)
     }
+=======
+>>>>>>> ruby-china/master
   end
 
   

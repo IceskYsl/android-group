@@ -1,27 +1,24 @@
 source 'http://ruby.taobao.org'
 
-<<<<<<< HEAD
 gem 'execjs'
 gem 'therubyracer'
 
-gem "rails", "3.1.3"
-gem "bson_ext", "1.5.2"
-gem "mongoid", "2.3.4"
-=======
 gem "rails", "3.2.2"
 gem "rails-i18n","0.1.8"
 gem "jquery-rails", "1.0.16"
 gem "rails_autolink", ">= 1.0.4"
+gem "jquery-atwho-rails"
+
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
 end
->>>>>>> ruby-china/master
 
 #akismet
 gem 'ruby-akismet', :require => 'akismet'
+
 
 # 上传组件
 gem 'carrierwave', '0.5.7'

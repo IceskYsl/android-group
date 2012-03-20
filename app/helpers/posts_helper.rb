@@ -13,9 +13,13 @@ module PostsHelper
     raw tags.collect { |tag| link_to(tag,posts_path(:tag => tag)) }.join(", ")
   end
 <<<<<<< HEAD
+<<<<<<< HEAD
   
  
   
+=======
+
+>>>>>>> ruby-china/master
 =======
 
 >>>>>>> ruby-china/master

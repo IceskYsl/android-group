@@ -37,7 +37,6 @@ class RepliesController < ApplicationController
   end
 
   protected
-  
   def akismet_attributes
     {
       :comment_author       => @reply.user.login,
@@ -47,6 +46,7 @@ class RepliesController < ApplicationController
       :permalink            => topic_url(@reply.topic_id)
     }
   end
+
 
   def find_topic
     @topic = Topic.find(params[:topic_id])

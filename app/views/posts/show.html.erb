@@ -10,11 +10,14 @@
   <div class="box">
     <h2><%= t("common.you_may_like")%></h2>
     <div class="inner">
+<<<<<<< HEAD
 	  <ul>
 	    <% @post.similars.each do |item| %>
 	        <li> <%= post_title_tag(item) %></li>
 	    <% end %>
 	  </ul>
+=======
+>>>>>>> ruby-china/master
     </div>
   </div>
 </div>
@@ -31,7 +34,11 @@
       <%= t("posts.post_source")%>:<%= link_to(@post.source, @post.source_url+"?ref=#{Setting.domain}", :target => "_blank")%>
     </div>
     <% end %>
+<<<<<<< HEAD
     <div class="body"> <%= format_topic_body(@post.body) %>  </div>
+=======
+    <div class="body"><%= raw @post.body %></div>
+>>>>>>> ruby-china/master
     <div class="votes">
 
     </div>

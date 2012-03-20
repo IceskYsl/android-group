@@ -37,7 +37,7 @@ class Post
   scope :by_tag, Proc.new { |t| where(:tags => t) }
 
   before_save :split_tags
-  
+
   def similars
     tags = self.tags
     tags.blank? ?  [] : Post.normal.by_tag(tags.first).limit(5)
@@ -51,6 +51,7 @@ class Post
     tags
   end
   
+
   def split_tags
     if !self.tag_list.blank? and self.tags.blank?
       self.tags = self.tag_list.split(/,|，/).collect { |tag| tag.strip }.uniq

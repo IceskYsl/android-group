@@ -11,8 +11,8 @@ class Comment
 
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
+  attr_accessible :commentable_type, :commentable_id, :body
 
-  attr_accessible :body
 
   index :user_id
   index :commentable_type

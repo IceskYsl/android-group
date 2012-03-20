@@ -16,7 +16,11 @@ class TopicsController < ApplicationController
 
   def feed
     @topics = Topic.recent.fields_for_list.limit(20).includes(:node,:user, :last_reply_user)
+<<<<<<< HEAD
     response.headers['Content-Type'] = 'application/rss+xml'
+=======
+    response.headers['Content-Type'] = 'application/rss+xml; charset=utf-8'
+>>>>>>> ruby-china/master
     render :layout => false
   end
 
@@ -126,7 +130,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic = Topic.find(params[:id])
-    @topic.destroy
+    @topic.destroy_by(current_user)
     redirect_to(topics_path, :notice => t("topics.delete_topic_success"))
   end
 
@@ -148,5 +152,4 @@ class TopicsController < ApplicationController
     end
     set_seo_meta(t("menu.topics"))
   end
-
 end
