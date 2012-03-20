@@ -13,12 +13,9 @@
   <meta name="keywords" content="<%= @meta_keywords %>" />
   <meta name="description" content="<%= @meta_description %>" />
   <meta charset='utf-8'>
-<<<<<<< HEAD
   <link rel='shortcut icon' href='/favicon.ico' />
   
-=======
-  <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>" /> 
->>>>>>> ruby-china/master
+
   <%= csrf_meta_tag %>
   <%= auto_discovery_link_tag(:rss,feed_topics_url,:title => '订阅最新贴') %>
   <%= yield :node_feed_link %>
@@ -32,10 +29,7 @@
         </h3>
          <%= render_list :class => "nav" do |li|
            li << link_to(t("menu.topics"), topics_path)
-<<<<<<< HEAD
 		   li << link_to(t("menu.posts"), posts_path)
-=======
->>>>>>> ruby-china/master
            li << link_to(t("menu.wiki"), pages_path )
            li << link_to(t("menu.sites"), sites_path )
            li << link_to(t("menu.users"), users_path)

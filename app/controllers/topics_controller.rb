@@ -16,11 +16,7 @@ class TopicsController < ApplicationController
 
   def feed
     @topics = Topic.recent.fields_for_list.limit(20).includes(:node,:user, :last_reply_user)
-<<<<<<< HEAD
-    response.headers['Content-Type'] = 'application/rss+xml'
-=======
     response.headers['Content-Type'] = 'application/rss+xml; charset=utf-8'
->>>>>>> ruby-china/master
     render :layout => false
   end
 
