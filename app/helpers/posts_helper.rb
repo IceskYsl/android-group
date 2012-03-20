@@ -12,17 +12,7 @@ module PostsHelper
     tags = tags[0..limit-1] if tags.count > limit
     raw tags.collect { |tag| link_to(tag,posts_path(:tag => tag)) }.join(", ")
   end
-<<<<<<< HEAD
-<<<<<<< HEAD
-  
- 
-  
-=======
 
->>>>>>> ruby-china/master
-=======
-
->>>>>>> ruby-china/master
   def render_post_state_s(post)
     case post.state
     when 0 then content_tag(:span, "草稿", :class => "label important")
