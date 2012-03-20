@@ -42,11 +42,7 @@ class Cpanel::TopicsController < Cpanel::ApplicationController
 
   def destroy
     @topic = Topic.unscoped.find(params[:id])
-<<<<<<< HEAD
-    @topic.destroy
-=======
     @topic.destroy_by(current_user)
->>>>>>> ruby-china/master
 
     redirect_to(cpanel_topics_path)
   end
