@@ -9,6 +9,7 @@ gem "jquery-rails", "1.0.16"
 gem "rails_autolink", ">= 1.0.4"
 gem "jquery-atwho-rails"
 
+gem "treetop"
 
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
